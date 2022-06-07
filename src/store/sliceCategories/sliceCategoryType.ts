@@ -4,7 +4,7 @@ import {Api,Category } from "api/api";
 
 const api= new Api ();
 export interface State {
-  categories:{ categories: Category[]};
+  categories:{categories:Category[]};
   loadStatus: LOAD_STATUSES;
 }
 

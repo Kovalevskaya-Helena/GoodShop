@@ -1,16 +1,16 @@
 import {createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { LOAD_STATUSES } from '../constants'
+import { LOAD_STATUSES } from '../../constants'
 import { Good,Api } from "api/api";
 
 
 const api= new Api ();
 
 export interface State {
-  goods:{ items: Good[]; total: number };
+  category:{ items: Good[]; total: number };
   loadStatus: LOAD_STATUSES;
 }
 const initialState: State = {
-  goods:{
+  category:{
     items:[
       {categoryTypeId:'',
   id:'',
@@ -25,22 +25,22 @@ const initialState: State = {
 };
 
 
-const fetchGood=createAsyncThunk("Good/fetchGood", api.getGoodsByCategory);
+const fetchCategory=createAsyncThunk("Category/fetchCategory", api.getGoodsByCategory);
 
 
 export const {reducer}=createSlice({
-  name:'good',
+  name:'category',
   initialState,
   reducers:{},
   extraReducers:(builder)=>{
-    builder.addCase(fetchGood.pending,(state)=>{
+    builder.addCase(fetchCategory.pending,(state)=>{
        state.loadStatus = LOAD_STATUSES.LOADING;
     })
-    builder.addCase(fetchGood.rejected,(state)=>{
+    builder.addCase(fetchCategory.rejected,(state)=>{
        state.loadStatus = LOAD_STATUSES.ERROR;
     })
-    builder.addCase(fetchGood.fulfilled,(state,action)=>{
-      state.goods = action.payload;
+    builder.addCase(fetchCategory.fulfilled,(state,action)=>{
+      state.category = action.payload;
        state.loadStatus = LOAD_STATUSES.LOADED;
     })
 
@@ -49,5 +49,5 @@ export const {reducer}=createSlice({
 })
 
 export const actions = {
-  fetchGood
+  fetchCategory
 };

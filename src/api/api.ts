@@ -17,7 +17,7 @@ export class Api {
   apiCategory='/api/categories'
   
 
-    request = (url:string, params?:{categoryTypeIds:string}):Promise<{ items: Good[]; total: number }> => {
+    request = (url:string, params?:{categoryTypeIds:string}) => {
   const urlParams = new URLSearchParams(params).toString();
 
   return fetch(`${url}?${urlParams}`).then((response) => {
@@ -27,19 +27,19 @@ export class Api {
     throw new Error('some error');
   });
 };
-getResource = async (url:string) => {
+/*getResource = async (url:string):Promise<{categories:Category []}> => {
     const res = await fetch(`${url}`);
 
     if (!res.ok) {
       throw new Error(`Could not fetch ${url}` + `, received ${res.status}`);
     }
     return await res.json();
-  };
-
+  };*/
+  
 getGoodsByCategory=(categoryTypeId:string):Promise<{ items: Good[]; total: number }>=>{
   return this.request(this.apiBase,{categoryTypeIds:`${categoryTypeId}`})
 }
-getCategories():Promise<{categories:Category []}>{
-  return this.getResource(this.apiCategory)
+getCategories=():Promise<{categories:Category []}>=>{
+  return this.request(this.apiCategory)
 }
 }

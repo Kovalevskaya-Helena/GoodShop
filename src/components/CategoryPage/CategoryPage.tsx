@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import {useEffect} from 'react'
-import { actions, selectorsCategory } from 'store/sliceCategory';
+import { actions, selectorsCategories} from 'store/sliceCategories';
 import { AppDispatch } from 'store/store';
 import { Api } from 'api';
 import { CardCategory } from 'components/CardCategory';
@@ -9,7 +9,7 @@ import { CardCategory } from 'components/CardCategory';
 const api=new Api()
 export const CategoryPage:React.FC=()=>{
   const dispatch=useDispatch<AppDispatch>();
-  const categoriesItems=useSelector(selectorsCategory.getCategory)
+  const categoriesItems=useSelector(selectorsCategories.getCategories)
 
   useEffect(()=>{
   dispatch(actions.fetchCategories)

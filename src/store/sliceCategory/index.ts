@@ -1,3 +1,3 @@
-export {actions} from './sliceCategoryType'
-export * as selectorsCategory from './selectorsCategories'
-export {reducer} from './sliceCategoryType'
+export {actions} from './sliceCategory'
+export * as selectorsCategory from './selectorsCategory'
+export {reducer} from './sliceCategory'

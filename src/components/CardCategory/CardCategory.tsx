@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import {useEffect} from 'react'
-import { goodSelectors ,actions} from 'store'
+import {actions,selectorsCategory} from '../../store/sliceCategory'
 import { AppDispatch } from 'store/store';
 import { Api } from 'api';
 import { CardItem } from 'components/Card/card';
@@ -18,14 +18,14 @@ export const CardCategory:React.FC<CardCategory>=({id,type,label})=>{
 
 
   const dispatch=useDispatch<AppDispatch>();
-  const goods=useSelector(goodSelectors.getGood)
+  const category=useSelector(selectorsCategory.getCategory)
 
   useEffect(()=>{
   api.getCategories()
-    dispatch(actions.fetchGood(id))
+    dispatch(actions.fetchCategory(id))
   },[])
 
-  const {items,total}=goods
+  const {items,total}=category
   return (<ul className={css.container}>{items.map(({label,id,price,img})=> <div className={css.container} key={id}><li >
          <CardItem label={label} id={id} price={price} img={img}/>
         </li></div>)}</ul>);
