@@ -1,25 +1,25 @@
 import React from 'react'
-import { useSelector, useDispatch } from "react-redux";
-import {useEffect} from 'react'
-import { actions, selectorsCategories} from 'store/sliceCategories';
-import { AppDispatch } from 'store/store';
-import { Api } from 'api';
-import { CardCategory } from 'components/CardCategory';
+import { GoodCategory } from 'components/GoodCategory';
+import { Row } from 'antd';
+import { Spinner } from 'components/Spinner';
+import { ErrorAlert } from 'components/ErrorAlert';
+import { useCategoryPage } from './useCategoryPage';
 
-const api=new Api()
+
+
 export const CategoryPage:React.FC=()=>{
-  const dispatch=useDispatch<AppDispatch>();
-  const categoriesItems=useSelector(selectorsCategories.getCategories)
 
-  useEffect(()=>{
-  dispatch(actions.fetchCategories)
-  },[])
+  const data=useCategoryPage()
   
-console.log(categoriesItems);
+return (<Row >
+  {data.loading&&<Spinner/>}
+  {data.error&&<ErrorAlert/>
+  }
+  {data.loaded&&data.popularCategories.map(({category:{id,label},items})=><div key={id}>
+    <GoodCategory label={label} items={items}/>
+    </div>)}
+  
+  </Row>)
 
-const {categories}=categoriesItems
 
-  return (<ul >{categories.map(({label,id,type})=> <li key={id}>
-         <CardCategory label={label} id={id} type={type}/>
-        </li>)}</ul>);
 }

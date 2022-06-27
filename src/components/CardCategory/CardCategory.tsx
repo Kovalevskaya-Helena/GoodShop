@@ -1,11 +1,9 @@
 import React from 'react'
-import { useSelector, useDispatch } from "react-redux";
-import {useEffect} from 'react'
-import {actions,selectorsCategory} from '../../store/sliceCategory'
-import { AppDispatch } from 'store/store';
-import { Api } from 'api';
-import { CardItem } from 'components/Card/card';
+import { CardItem } from 'components/Card/CardItem';
 import css from './cardcategory.module.css'
+import { ErrorAlert } from 'components/ErrorAlert';
+import { Spinner } from 'components/Spinner';
+import {useCardCategory} from './useCardCategory'
 
 interface CardCategory {
   id: string,
@@ -13,20 +11,16 @@ interface CardCategory {
   type:string
 }
 
-const api=new Api()
 export const CardCategory:React.FC<CardCategory>=({id,type,label})=>{
 
 
-  const dispatch=useDispatch<AppDispatch>();
-  const category=useSelector(selectorsCategory.getCategory)
+  const data=useCardCategory(id)
 
-  useEffect(()=>{
-  api.getCategories()
-    dispatch(actions.fetchCategory(id))
-  },[])
-
-  const {items,total}=category
-  return (<ul className={css.container}>{items.map(({label,id,price,img})=> <div className={css.container} key={id}><li >
+  return (<>
+  {data.loading&&<Spinner/>}
+    {data.error &&<ErrorAlert/>}
+  {data.loaded&&<ul className={css.container}>{data.items.map(({label,id,price,img})=> <div className={css.container} key={id}><li >
          <CardItem label={label} id={id} price={price} img={img}/>
-        </li></div>)}</ul>);
+        </li></div>)}</ul>}
+        </>)
 }

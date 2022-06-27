@@ -13,11 +13,15 @@ export interface Category {
 }
 
 export class Api {
-  apiBase = '/api/goods';
-  apiCategory='/api/categories'
-  
 
-    request = (url:string, params?:{categoryTypeIds:string}) => {
+  endPoints={
+    goods:'/api/goods',
+    categories:'/api/categories',
+    popular_categories:'/api/popular_categories',
+  
+  }
+  
+    request = (url:string, params?:{categoryTypeIds:string,ids?:string, text?:string}) => {
   const urlParams = new URLSearchParams(params).toString();
 
   return fetch(`${url}?${urlParams}`).then((response) => {
@@ -37,9 +41,16 @@ export class Api {
   };*/
   
 getGoodsByCategory=(categoryTypeId:string):Promise<{ items: Good[]; total: number }>=>{
-  return this.request(this.apiBase,{categoryTypeIds:`${categoryTypeId}`})
+  return this.request(this.endPoints.goods,{categoryTypeIds:`${categoryTypeId}`})
+}
+getGoods=():Promise<{ items: Good[]; total: number }>=>{
+  return this.request(this.endPoints.goods)
 }
 getCategories=():Promise<{categories:Category []}>=>{
-  return this.request(this.apiCategory)
+  return this.request(this.endPoints.categories)
 }
+getPopularCategories=():Promise<{ category: Category; items: Good[] }[]>=>{
+  return this.request(this.endPoints.popular_categories)
+}
+
 }

@@ -1,14 +1,12 @@
 import { LOAD_STATUSES } from "../../constants";
 import { rootStore } from "../store";
-import { Category } from "api/api";
-import { State } from "./sliceCategoryType";
-import { icon } from "components/Menu";
+import { State } from './sliceAllGoods'
+import { getCategories } from "store/sliceCategories/selectorsCategories";
 
-
-export const getCategoriesSlice = (state: rootStore): State => state.categories;
+export const getAllGoodsSlice = (state: rootStore): State => state.goods;
 export const getLoadStatusSlice = (state: rootStore): LOAD_STATUSES =>
-  getCategoriesSlice(state).loadStatus;
-  export const getCategories = (state: rootStore) => getCategoriesSlice(state).categories;
+  getAllGoodsSlice(state).loadStatus;
+  export const getAllGoods = (state: rootStore) => getAllGoodsSlice(state).goods
 
   export const getIsLoadingSeletor = (state:rootStore) =>  {
     return getLoadStatusSlice(state) === LOAD_STATUSES.LOADING;
@@ -19,19 +17,21 @@ export const getLoadStatusSlice = (state: rootStore): LOAD_STATUSES =>
   export const getIsErrorSeletor = (state:rootStore) =>  {
     return getLoadStatusSlice(state) === LOAD_STATUSES.ERROR;
   }
-  
-  export const getTrancformCategory=(state:rootStore)=>{
 
+  export const getMapGoods=(state:rootStore)=>{
+
+    const goods=getAllGoods(state);
     const mapCategories=getCategories(state);
-   
+    const {items}=goods
     const {categories}=mapCategories;
 
-    return categories.map((item)=>({...item,
-      Icon:
-    icon.find(
-      ({idIcon})=>idIcon===item.id)?.icon
+    return items.map((item)=>({...item,
+      categoryLabel:
+    categories.find(
+      ({id})=>id===item.categoryTypeId)?.label??'Неизвестная категория'
     })
     )
 
   
   }
+  

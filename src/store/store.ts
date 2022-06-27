@@ -1,10 +1,15 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { reducer  as categoryReducer} from './sliceCategory'
 import {reducer as categoriesReducer} from './sliceCategories'
+import {reducer as popularCategoriesReducer} from './slicePopularCategory'
+import {reducer as allGoodsReducer} from './sliceGoods'
+
 
 const rootReducer = combineReducers({
   category: categoryReducer,
-  categories:categoriesReducer
+  categories:categoriesReducer,
+  popularCategories:popularCategoriesReducer,
+  goods:allGoodsReducer
   
 });
 
