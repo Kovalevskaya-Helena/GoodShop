@@ -1,26 +1,26 @@
 import React from 'react'
-import { CardItem } from 'components/Card/CardItem';
+import { Card } from 'components/Card/Card';
 import css from './cardcategory.module.css'
 import { ErrorAlert } from 'components/ErrorAlert';
 import { Spinner } from 'components/Spinner';
 import {useCardCategory} from './useCardCategory'
 
-interface CardCategory {
+interface CardCategoryProps {
   id: string,
   label:string,
   type:string
 }
 
-export const CardCategory:React.FC<CardCategory>=({id,type,label})=>{
+export const CardCategory:React.FC<CardCategoryProps>=({id,type,label})=>{
 
 
-  const data=useCardCategory(id)
+  const categoryHook=useCardCategory(id)
 
   return (<>
-  {data.loading&&<Spinner/>}
-    {data.error &&<ErrorAlert/>}
-  {data.loaded&&<ul className={css.container}>{data.items.map(({label,id,price,img})=> <div className={css.container} key={id}><li >
-         <CardItem label={label} id={id} price={price} img={img}/>
+  {categoryHook.loading&&<Spinner/>}
+    {categoryHook.error &&<ErrorAlert/>}
+  {categoryHook.loaded&&<ul className={css.container}>{categoryHook.items.map(({label,id,price,img})=> <div className={css.container} key={id}><li >
+         <Card label={label} id={id} price={price} img={img}/>
         </li></div>)}</ul>}
         </>)
 }

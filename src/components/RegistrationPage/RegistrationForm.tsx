@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { actionsCategories, selectorsCategories } from 'store/sliceCategories'
-import { AppDispatch } from 'store/store';
+import { selectorsCategories, actionsCategories } from 'store';
+import { AppDispatch } from 'store';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
-import { Alert } from 'antd';
 import {
   Form,
   Input,
@@ -15,22 +14,17 @@ import {
   Checkbox
 } from 'antd';
 import { Col, Row, Divider } from 'antd';
-import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import css from './registrationForm.module.css'
 export const RegistrationForm: React.FC<{}> = () => {
   const navigate = useNavigate();
   const categoriesItems = useSelector(selectorsCategories.getCategories);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(actionsCategories.actions.fetchCategories())
+    dispatch(actionsCategories.fetchCategories())
 
   }, [])
 
   const { categories } = categoriesItems
-
-
-
-
 
   return (<>
 
@@ -54,14 +48,8 @@ export const RegistrationForm: React.FC<{}> = () => {
           onFinish={(values) => {
             console.log({ values }
             );
-
-
           }
-
-
           }
-
-
 
         >
 

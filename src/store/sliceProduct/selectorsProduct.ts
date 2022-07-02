@@ -1,12 +1,12 @@
 import { LOAD_STATUSES } from "../../constants";
 import { rootStore } from "../store";
-import { PopularCategoriesState } from './slicePopularCategories'
+import { GoodState } from './sliceProduct'
 
 
-export const getPopularCategoriesSlice = (state: rootStore): PopularCategoriesState => state.popularCategories;
+export const getGoodSlice = (state: rootStore): GoodState => state.good;
 export const getLoadStatusSlice = (state: rootStore): LOAD_STATUSES =>
-  getPopularCategoriesSlice(state).loadStatus;
-  export const getPopularCategories = (state: rootStore) => getPopularCategoriesSlice(state).popularCategories;
+  getGoodSlice(state).loadStatus;
+  export const getGood = (state: rootStore) => getGoodSlice(state).good
 
   export const getIsLoading = (state:rootStore):boolean =>  {
     return getLoadStatusSlice(state) === LOAD_STATUSES.LOADING;

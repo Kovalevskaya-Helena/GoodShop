@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import  {UserOutlined,ShoppingCartOutlined,SearchOutlined} from '@ant-design/icons'
 import { MenuApp } from 'components/Menu';
 import { Badge } from 'antd';
+import { Cart } from 'components/Cart';
 
 /*Добавить телефон*/
 
@@ -14,7 +15,7 @@ export const Header:React.FC=()=>{
     className="site-page-header"
    
     onBack={() => window.history.back()}
-    title={<Link to='/home' style={{ color: '#C71585' }}>BAZA Brothers</Link>}
+    title={<Link to='/' style={{ color: '#C71585' }}>BAZA Brothers</Link>}
     extra={[
       <MenuApp/>,
       <Link to='/goods'>All Goods</Link>,
@@ -25,6 +26,7 @@ export const Header:React.FC=()=>{
      <ShoppingCartOutlined style={{fontSize:'20px'}}/>
     </Badge>
   </Link>,
+  <Cart/>
       ]} 
   />
     <Divider></Divider>

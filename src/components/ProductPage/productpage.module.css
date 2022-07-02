@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+
+.title{
+  font-family: 'Maven Pro', sans-serif;
+    font-style: normal;
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 600;
+    width: 100%;
+}
+
+.price{
+      font-family: 'Maven Pro', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.5;
+      position: relative;
+      align-self: start;
+      margin: 0;
+}
+.description {
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  position: relative;
+  align-self: start;
+  margin: 0;
+}
+
+
+.count {
+  font-family: 'Maven Pro', sans-serif;
+  font-style: normal;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 600;
+  
+}

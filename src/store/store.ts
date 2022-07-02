@@ -3,13 +3,15 @@ import { reducer  as categoryReducer} from './sliceCategory'
 import {reducer as categoriesReducer} from './sliceCategories'
 import {reducer as popularCategoriesReducer} from './slicePopularCategory'
 import {reducer as allGoodsReducer} from './sliceGoods'
+import {reducer as goodReducer} from './sliceProduct'
 
 
 const rootReducer = combineReducers({
   category: categoryReducer,
   categories:categoriesReducer,
   popularCategories:popularCategoriesReducer,
-  goods:allGoodsReducer
+  goods:allGoodsReducer,
+  good:goodReducer
   
 });
 

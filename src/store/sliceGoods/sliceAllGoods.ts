@@ -1,33 +1,33 @@
 import {createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { LOAD_STATUSES } from '../../constants'
-import {Good,Api } from "api/api";
+import { Api,Good } from "api";
+
+
 
 const api= new Api ();
+const GOODS='goods'
 
-export interface State {
+export interface GoodsState {
   goods:{items: Good[],total:number };
   loadStatus: LOAD_STATUSES;
 }
 
-const initialState: State = {
+const initialState: GoodsState = {
   goods:{
-    items:[
-      {categoryTypeId:'',
-  id:'',
-  img:'',
-  label:'',
-  price:NaN,}
-    ],
- total:NaN
+    items:[],
+ total:0
   
   },
   loadStatus:LOAD_STATUSES.UNKNOWN
 };
 
-const fetchAllGoods=createAsyncThunk("AllGoods/fetchAllGoods", api.getGoods);
+const fetchAllGoods=createAsyncThunk(`${GOODS}/fetchAllGoods`, api.getGoods);
+export const actions = {
+  fetchAllGoods
+};
 
 export const {reducer}=createSlice({
-  name:'goods',
+  name:`${GOODS}`,
   initialState,
   reducers:{},
   extraReducers:(builder)=>{
@@ -46,6 +46,4 @@ export const {reducer}=createSlice({
 
 })
 
-export const actions = {
-  fetchAllGoods
-};
+

@@ -1,20 +1,18 @@
-import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import {useEffect} from 'react'
-import {actions, selectorsPopularCategories} from 'store/slicePopularCategory'
-import { AppDispatch } from 'store/store';
-
+import { selectorsPopularCategories,actionsPopularCategories } from "store";
+import { AppDispatch } from 'store';
 
 export const useCategoryPage = () => {
   const dispatch=useDispatch<AppDispatch>()
   const popularCategories=useSelector(selectorsPopularCategories.getPopularCategories)
   
-  const loading=useSelector(selectorsPopularCategories.getIsLoadingSeletor)
-  const loaded=useSelector(selectorsPopularCategories.getIsLoadedSeletor)
-  const error=useSelector(selectorsPopularCategories.getIsErrorSeletor)
+  const loading=useSelector(selectorsPopularCategories.getIsLoading)
+  const loaded=useSelector(selectorsPopularCategories.getIsLoaded)
+  const error=useSelector(selectorsPopularCategories.getIsError)
 
   useEffect (()=>{
-    dispatch(actions.fetchPopularCategories())
+    dispatch(actionsPopularCategories.fetchPopularCategories())
   },[]);
 
   return {

@@ -1,24 +1,36 @@
 import { LOAD_STATUSES } from "../../constants";
 import { rootStore } from "../store";
-import { State } from "./sliceCategory";
+import { CategoryState } from "./sliceCategory";
 import { getCategories } from "store/sliceCategories/selectorsCategories";
 
-export const getCategorySlice = (state: rootStore): State => state.category;
+
+
+interface transformCategory{
+  categoryLabel: string;
+  categoryTypeId: string,
+  id:string,
+  img:string,
+  label:string,
+  description:string,
+  price:number,
+}
+
+export const getCategorySlice = (state: rootStore): CategoryState => state.category;
 export const getLoadStatusSlice = (state: rootStore): LOAD_STATUSES =>
   getCategorySlice(state).loadStatus;
   
   export const getCategory = (state: rootStore) => getCategorySlice(state).category;
-  export const getIsLoadingSeletor = (state:rootStore) =>  {
+  export const getIsLoading = (state:rootStore):boolean =>  {
     return getLoadStatusSlice(state) === LOAD_STATUSES.LOADING;
   }
-   export const getIsLoadedSeletor = (state:rootStore) =>  {
+   export const getIsLoaded = (state:rootStore):boolean =>  {
     return getLoadStatusSlice(state) === LOAD_STATUSES.LOADED;
   }
-  export const getIsErrorSeletor = (state:rootStore) =>  {
+  export const getIsError = (state:rootStore):boolean =>  {
     return getLoadStatusSlice(state) === LOAD_STATUSES.ERROR;
   }
 
-   export const getTransformCategory=(state:rootStore)=>{
+   export const getTransformCategory=(state:rootStore):transformCategory[]=>{
 
     const category=getCategory(state);
     const mapCategories=getCategories(state);

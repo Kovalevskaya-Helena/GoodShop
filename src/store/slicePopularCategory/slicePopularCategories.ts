@@ -1,36 +1,28 @@
 import {createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { LOAD_STATUSES } from '../../constants'
-import {Category, Good,Api } from "api/api";
+import { Api,Category,Good } from "api";
+
 
 const api= new Api ();
+const POPULAR_CATEGORIES='popularCategories';
 
-export interface State {
+export interface PopularCategoriesState {
   popularCategories:{ category: Category; items: Good[] }[];
   loadStatus: LOAD_STATUSES;
 }
 
-const initialState: State = {
-  popularCategories:[{
-    items:[
-      {categoryTypeId:'',
-  id:'',
-  img:'',
-  label:'',
-  price:NaN,}
-    ],
- category:{
-   type:'',
-   label:'',
-   id:'',}
-  
-  }],
+const initialState: PopularCategoriesState = {
+  popularCategories:[],
   loadStatus:LOAD_STATUSES.UNKNOWN
 };
 
-const fetchPopularCategories=createAsyncThunk("Categories/fetchPopularCategories", api.getPopularCategories);
+const fetchPopularCategories=createAsyncThunk(`${POPULAR_CATEGORIES}/fetchPopularCategories`, api.getPopularCategories);
+export const actions = {
+  fetchPopularCategories
+};
 
 export const {reducer}=createSlice({
-  name:'categories',
+  name:`${POPULAR_CATEGORIES}`,
   initialState,
   reducers:{},
   extraReducers:(builder)=>{
@@ -49,6 +41,4 @@ export const {reducer}=createSlice({
 
 })
 
-export const actions = {
-  fetchPopularCategories
-};
+

@@ -1,2 +1,2 @@
 export {MenuApp} from './Menu'
-export {icon} from './iconMenu'
+export {icons} from './iconsMenu'

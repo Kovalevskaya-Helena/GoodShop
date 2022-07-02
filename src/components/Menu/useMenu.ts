@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import {useEffect,useState} from 'react'
-import {actionsCategories,selectorsCategories} from 'store/sliceCategories'
-import { AppDispatch } from 'store/store';
+import { selectorsCategories, actionsCategories} from 'store';
+import { AppDispatch } from 'store';
 import type { DrawerProps, } from 'antd';
 
 
@@ -12,22 +12,22 @@ export const useMenu= () => {
   const showDrawer = () => {
     setVisible(true);
   };
-  const onClose = () => {
+  const hideDrawer = () => {
     setVisible(false);
   };
   const menuItems=useSelector(selectorsCategories.getTrancformCategory);
-  const loading=useSelector(selectorsCategories.getIsLoadingSeletor)
-  const loaded=useSelector(selectorsCategories.getIsLoadedSeletor)
-  const error=useSelector(selectorsCategories.getIsErrorSeletor)
+  const loading=useSelector(selectorsCategories.getIsLoading)
+  const loaded=useSelector(selectorsCategories.getIsLoaded)
+  const error=useSelector(selectorsCategories.getIsError)
   const dispatch=useDispatch<AppDispatch>();
   useEffect(()=>{
-    dispatch(actionsCategories.actions.fetchCategories())
+    dispatch(actionsCategories.fetchCategories())
   
   },[])
   return {
     menuItems,
     loading,
     loaded,
-    error,visible,placement,showDrawer,onClose
+    error,visible,placement,showDrawer,hideDrawer
   };
 };

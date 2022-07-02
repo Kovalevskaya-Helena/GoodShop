@@ -6,7 +6,7 @@ import { useGoodsPage } from './useGoodsPage';
 export const GoodsPage:React.FC=()=>{
 
 
-  const data=useGoodsPage()
+  const goodsHook=useGoodsPage()
 
   const columns=[
     {
@@ -23,7 +23,7 @@ export const GoodsPage:React.FC=()=>{
       title:'Goods',
       dataIndex:'label',
       key:'id',
-      render:(label:string)=>{return <a>{label}</a>}
+      render:(label:string)=><a>{label}</a>
     },
     {
       title:'Description',
@@ -37,6 +37,6 @@ export const GoodsPage:React.FC=()=>{
     }
   ]
   return (
-    <Table dataSource={data.allGoods} columns={columns} pagination={{total:220,pageSize:10}}></Table>
+    <Table dataSource={goodsHook.allGoods} columns={columns} pagination={{total:220,pageSize:10}}></Table>
   )
 }

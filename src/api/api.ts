@@ -4,6 +4,7 @@ export interface Good{
   id:string,
   img:string,
   label:string,
+  description:string,
   price:number,
 }
 export interface Category {
@@ -21,8 +22,9 @@ export class Api {
   
   }
   
-    request = (url:string, params?:{categoryTypeIds:string,ids?:string, text?:string}) => {
-  const urlParams = new URLSearchParams(params).toString();
+    request = (url:string, params?: Record<string, any>) => {
+  let urlParams = new URLSearchParams(params).toString();
+  urlParams = urlParams ? `${urlParams}` : ''; 
 
   return fetch(`${url}?${urlParams}`).then((response) => {
     if (response.ok) {
@@ -51,6 +53,9 @@ getCategories=():Promise<{categories:Category []}>=>{
 }
 getPopularCategories=():Promise<{ category: Category; items: Good[] }[]>=>{
   return this.request(this.endPoints.popular_categories)
+}
+getGood=(ids:string):Promise<{ items: Good[]; total: number }>=>{
+  return this.request(this.endPoints.goods,{ids:`${ids}`})
 }
 
 }

@@ -2,8 +2,9 @@ import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import {useParams,useNavigate} from 'react-router-dom'
 import {useEffect} from 'react'
-import {actions,selectorsCategory} from 'store/sliceCategory'
-import { AppDispatch } from 'store/store';
+import { selectorsCategory,actionsCategory } from 'store';
+import { AppDispatch } from 'store';
+
 
 
 export const useSelectedCategoryPage = () => {
@@ -11,12 +12,12 @@ export const useSelectedCategoryPage = () => {
   const category=useSelector(selectorsCategory.getTransformCategory)
   const dispatch=useDispatch<AppDispatch>()
   const navigate=useNavigate()
-  const loading=useSelector(selectorsCategory.getIsLoadingSeletor)
-  const error=useSelector(selectorsCategory.getIsErrorSeletor)
-  const loaded=useSelector(selectorsCategory.getIsLoadedSeletor)
+  const loading=useSelector(selectorsCategory.getIsLoading)
+  const error=useSelector(selectorsCategory.getIsError)
+  const loaded=useSelector(selectorsCategory.getIsLoaded)
 
   useEffect (()=>{
-    dispatch(actions.fetchCategory(idCategory))
+    dispatch(actionsCategory.fetchCategory(idCategory))
   },[idCategory]);
 
   const goBack=()=>navigate(-1);

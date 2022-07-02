@@ -10,27 +10,28 @@ import { useMenu } from './useMenu';
 
 export const MenuApp: React.FC = () => {
   
-  const data=useMenu()
+  const menuHook=useMenu()
 
   return (
     <>
       <Space>
     
-        <Button  onClick={data.showDrawer}>
+        <Button  onClick={menuHook.showDrawer}>
          <MenuOutlined />
         </Button>
       </Space>
       <Drawer
-        placement={data.placement}
+        placement={menuHook.placement}
         closable={false}
-        onClose={data.onClose}
-        visible={data.visible}
-        key={data.placement}
+        onClose={menuHook.hideDrawer}
+        visible={menuHook.visible}
+        key={menuHook.placement}
       >
         <Menu >
-          {data.loading&&<Spinner/>}
-          {data.error&&<ErrorAlert/>}
-          {data.loaded&& data.menuItems.map((item)=><MenuItem key={item.id}><Link to={`/category/${item.id}`}>{item.Icon}{item.label}</Link></MenuItem>)}
+          {menuHook.loading&&<Spinner/>}
+          {menuHook.error&&<ErrorAlert/>}
+          {menuHook.loaded&& menuHook.menuItems.map((item)=><MenuItem key={item.id}><Link to={`/category/${item.id}`}>{item.icon}{item.label}</Link></MenuItem>)
+        }
 
                 
         </Menu>
