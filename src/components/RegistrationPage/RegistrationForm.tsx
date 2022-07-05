@@ -11,7 +11,7 @@ import {
   Radio,
   DatePicker,
   Switch,
-  Checkbox
+  Checkbox,Space
 } from 'antd';
 import { Col, Row, Divider } from 'antd';
 import css from './registrationForm.module.css'
@@ -154,7 +154,14 @@ export const RegistrationForm: React.FC<{}> = () => {
           </Form.Item>
         </Form>
       </Col>
-      <Col span={12}>My account allows</Col>
+      <Col span={12}>
+        <Space><div>REGISTARTION</div></Space>
+        
+        <Space><div>Registering on this site allows you to access the status and history of your order. Just fill in the fields below and we will create a new account for you as soon as possible. We will only ask you for the information necessary to speed up and simplify the purchase process.
+          </div>
+          </Space>
+          <Button>Sign in</Button>
+        </Col>
     </Row>
 
 

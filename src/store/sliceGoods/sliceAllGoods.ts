@@ -1,6 +1,8 @@
 import {createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { LOAD_STATUSES } from '../../constants'
 import { Api,Good } from "api";
+import { Spinner } from 'components/Spinner';
+import { ErrorAlert } from 'components/ErrorAlert';
 
 
 
@@ -21,7 +23,7 @@ const initialState: GoodsState = {
   loadStatus:LOAD_STATUSES.UNKNOWN
 };
 
-const fetchAllGoods=createAsyncThunk(`${GOODS}/fetchAllGoods`, api.getGoods);
+const fetchAllGoods=createAsyncThunk(`${GOODS}/fetchAllGoods`, (limit: number) => api.getGoods({ limit}));
 export const actions = {
   fetchAllGoods
 };

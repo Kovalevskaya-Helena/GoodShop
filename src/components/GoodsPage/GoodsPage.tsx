@@ -1,6 +1,9 @@
 import React from 'react'
 import {Table} from 'antd';
 import { useGoodsPage } from './useGoodsPage';
+import { Spinner } from 'components/Spinner';
+import { ErrorAlert } from 'components/ErrorAlert';
+import { Link } from 'react-router-dom';
 
 
 export const GoodsPage:React.FC=()=>{
@@ -36,7 +39,10 @@ export const GoodsPage:React.FC=()=>{
       key:'id'
     }
   ]
-  return (
-    <Table dataSource={goodsHook.allGoods} columns={columns} pagination={{total:220,pageSize:10}}></Table>
+  return (<>
+    {goodsHook.error && <ErrorAlert />}
+    {goodsHook.loading && <Spinner />}
+    {goodsHook.loaded && <Table dataSource={goodsHook.allGoods} columns={columns} pagination={{total:220,pageSize:10}}></Table>}
+    </>
   )
 }

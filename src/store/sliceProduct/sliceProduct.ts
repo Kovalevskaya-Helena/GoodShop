@@ -3,23 +3,24 @@ import { LOAD_STATUSES } from '../../constants'
 import { Good,Api } from "api";
 
 const api= new Api ();
-const GOOD='good';
+const GOOD ='good';
 
 export interface GoodState {
-  good:{items: Good[],total:number };
+  good:{ items: Good[], total:number };
   loadStatus: LOAD_STATUSES;
 }
 
 const initialState: GoodState = {
-  good:{
+  good: {
     items:[],
- total:0
-  
+    total:0
   },
+
   loadStatus:LOAD_STATUSES.UNKNOWN
 };
 
-const fetchProduct=createAsyncThunk(`${GOOD}/fetchProduct`, api.getGood);
+const fetchProduct=createAsyncThunk(`${GOOD}/fetchProduct`, (ids: string) => api.getGoods({ ids }));
+
 export const actions = {
   fetchProduct
 };

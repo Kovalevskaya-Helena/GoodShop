@@ -23,33 +23,25 @@ export function App() {
          
     <Col span={20}>
        <Routes>
-             <Route path="/" element={<CategoryPage/>
+              <Route path="/" element={<CategoryPage/>
 } /> 
-     <Route path="/registration" element={<RegistrationForm />} /> 
-    
-<Route path="/category/:idCategory" element={<SelectedCategoryPage/>
+              <Route path="/registration" element={<RegistrationForm />} /> 
+              <Route path="/category/:idCategory" element={<SelectedCategoryPage/>
 } /> 
-<Route path="*" element={<RegistrationForm/>
+              <Route path="*" element={<RegistrationForm/>
 } /> 
-<Route path="/good/:idGood" element={<ProductPage/>
+              <Route path="/good/:idGood" element={<ProductPage/>
 } /> 
-      <Route path="/goods" element={<GoodsPage />} /> 
+              <Route path="/goods" element={<GoodsPage />} /> 
     </Routes>
     </Col>
     
-        </Row>
-         
-    
-          </Content>
-        
+  </Row>
+                 </Content>
       </Layout>
       <Footer>Footer</Footer>
     </Layout>
-    
-    
   </>
-  
- 
   );
 }
 
