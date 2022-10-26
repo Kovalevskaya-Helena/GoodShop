@@ -7,6 +7,7 @@ import { GoodsPage } from 'components/GoodsPage'
 import { SelectedCategoryPage } from 'components/SelectedCategoryPage'; 
 import {Row,Col} from 'antd'
 import { ProductPage } from 'components/ProductPage';
+import { SignInForm } from 'components/SignIn';
 
 export function App() {
   const { Footer, Content } = Layout;
@@ -25,6 +26,7 @@ export function App() {
        <Routes>
               <Route path="/" element={<CategoryPage/>
 } /> 
+              <Route path="/signIn"  element={<SignInForm/>}/> 
               <Route path="/registration" element={<RegistrationForm />} /> 
               <Route path="/category/:idCategory" element={<SelectedCategoryPage/>
 } /> 

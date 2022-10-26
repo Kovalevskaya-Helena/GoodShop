@@ -2,7 +2,7 @@ import React from 'react';
 import { PageHeader} from 'antd';
 import { Divider} from 'antd';
 import { Link } from 'react-router-dom';
-import  {UserOutlined,ShoppingCartOutlined,SearchOutlined} from '@ant-design/icons'
+import  {UserOutlined,ShoppingCartOutlined,SearchOutlined,TeamOutlined} from '@ant-design/icons'
 import { MenuApp } from 'components/Menu';
 import { Cart } from 'components/Cart';
 import { Search } from 'components/Search';
@@ -19,7 +19,7 @@ export const Header:React.FC=()=>{
     extra={[
       <MenuApp/>,
       <Link to='/goods'>All Goods</Link>,
-
+      <Link to='/signIn' style={{ color: '#000000' }}><TeamOutlined style={{fontSize:'20px'}}/></Link>,
      <Search/>,
         <Link to='/registration' style={{ color: '#000000' }}><UserOutlined style={{fontSize:'20px'}}/></Link>,
         ,

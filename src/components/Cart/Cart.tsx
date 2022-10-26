@@ -23,6 +23,8 @@ export const Cart: React.FC = () => {
   const [placement, setPlacement] = useState<DrawerProps['placement']>('right');
 
 
+  console.log({ visible })
+
   const loading = useSelector(selectorsCart.getIsLoading);
   const loaded = useSelector(selectorsCart.getIsLoaded);
   const error = useSelector(selectorsCart.getIsError);
@@ -46,18 +48,6 @@ export const Cart: React.FC = () => {
     dispatch(actionsCart.removeFromCart(product));
   };
 
-  
-  if (loading) {
-    return <Spinner/>
-  }
-
-
-  
-
-  console.log(cart);
-  
-  
-
   return (
     
     <>
@@ -66,7 +56,7 @@ export const Cart: React.FC = () => {
  
         <Button onClick={showDrawer} style={{border:'none'}}>
           <Badge size="small" count={cart.reduce((acc,item)=>acc+item.count,0)} style={{ backgroundColor: '#C71585' }}>
-     <ShoppingCartOutlined style={{fontSize:'20px'}}/>
+      <ShoppingCartOutlined style={{fontSize:'20px'}}/>
     </Badge>
         </Button>
       </Space>
@@ -75,7 +65,7 @@ export const Cart: React.FC = () => {
         placement={placement}
         width={500}
         onClose={onClose}
-        visible={visible}
+        open={visible}
       >
         {error && <ErrorAlert />}
         {(!cart.length && loaded)&&<div>Корзина пуста</div>}

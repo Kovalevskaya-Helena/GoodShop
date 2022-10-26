@@ -63,7 +63,7 @@ export const RegistrationForm: React.FC<{}> = () => {
             ]} hasFeedback>
             <Input placeholder='Name' />
           </Form.Item>
-          <Form.Item label="Surname" name='UserSurname'
+          <Form.Item label="Surname" name='Surname'
             rules={[
               { whitespace: true }, { min: 2 }
             ]} hasFeedback>
@@ -79,7 +79,7 @@ export const RegistrationForm: React.FC<{}> = () => {
               {
                 required: true,
                 message: 'Please input your E-mail!',
-              },
+              },{ min: 2 },
             ]}>
             <Input placeholder='Email' />
           </Form.Item>
@@ -155,7 +155,7 @@ export const RegistrationForm: React.FC<{}> = () => {
         </Form>
       </Col>
       <Col span={12}>
-        <Space><div>REGISTARTION</div></Space>
+        <Space><div >REGISTARTION</div></Space>
         
         <Space><div>Registering on this site allows you to access the status and history of your order. Just fill in the fields below and we will create a new account for you as soon as possible. We will only ask you for the information necessary to speed up and simplify the purchase process.
           </div>
@@ -169,6 +169,9 @@ export const RegistrationForm: React.FC<{}> = () => {
 
   </>)
 }
+
+
+
 
 
 
