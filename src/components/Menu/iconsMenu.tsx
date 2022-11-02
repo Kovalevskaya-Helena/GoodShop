@@ -1,0 +1,3 @@
+import  {HomeOutlined,SmileOutlined,CrownOutlined,GiftOutlined,BookOutlined,CoffeeOutlined,RocketOutlined,DesktopOutlined,EditOutlined,CarOutlined,ExperimentOutlined } from '@ant-design/icons'
+
+export const icons =[{idIcon:'1',icon:<HomeOutlined />},{idIcon:'2',icon:<SmileOutlined />},{idIcon:'3',icon:<CrownOutlined />},{idIcon:'4',icon:<GiftOutlined />},{idIcon:'5',icon:<BookOutlined />},{idIcon:'6',icon:<CoffeeOutlined />},{idIcon:'7',icon:<RocketOutlined />},{idIcon:'8',icon:<DesktopOutlined />},{idIcon:'9',icon:<EditOutlined />},{idIcon:'10',icon:<CarOutlined />},{idIcon:'11',icon:<ExperimentOutlined />} ]
